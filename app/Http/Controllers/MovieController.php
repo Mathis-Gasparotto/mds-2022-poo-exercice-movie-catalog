@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 
 class MovieController extends Controller
 {
@@ -15,7 +16,8 @@ class MovieController extends Controller
 
     public function list()
     {
-        $movies = Movie::all();
+        $movies = Movie::paginate(20);
+        Paginator::useBootstrapFive();
         return view('movies.list', ['movies' => $movies]);
     }
 }
