@@ -14,10 +14,16 @@ class MovieController extends Controller
         return view('movies.show', ['movie' => $movie]);
     }
 
-    public function list()
+    public function list(Request $resquest)
     {
-        $movies = Movie::paginate(20);
+        if($resquest->query('orderBy') && $resquest->query('order'))
+        {
+            $movies = Movie::orderBy($resquest->query('orderBy'), $resquest->query('order'))
+                ->paginate(20);
+        } else {
+            $movies = Movie::paginate(20);
+        }
         Paginator::useBootstrapFive();
-        return view('movies.list', ['movies' => $movies]);
+        return view('movies.list', ['movies' => $movies, 'resquest' => $resquest]);
     }
 }
