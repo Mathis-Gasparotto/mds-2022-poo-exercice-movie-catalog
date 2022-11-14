@@ -13,4 +13,9 @@ class MovieController extends Controller
         return view('movies.show', ['movie' => $movie]);
     }
 
+    public function list()
+    {
+        $movies = Movie::all();
+        return view('movies.list', ['movies' => $movies]);
+    }
 }
