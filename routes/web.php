@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
-use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Support\Facades\Route;
 
