@@ -19,11 +19,12 @@ class MovieController extends Controller
         if($resquest->query('orderBy') && $resquest->query('order'))
         {
             $movies = Movie::orderBy($resquest->query('orderBy'), $resquest->query('order'))
-                ->paginate(20);
+                ->paginate(24);
         } else {
-            $movies = Movie::paginate(20);
+            $movies = Movie::paginate(24);
         }
         Paginator::useBootstrapFive();
-        return view('movies.list', ['movies' => $movies, 'resquest' => $resquest]);
+        return view('movies.list', ['movies' => $movies]);
     }
+
 }

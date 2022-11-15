@@ -15,6 +15,10 @@
             </tr>
         @endforeach
     </table> -->
+    <div class="d-flex justify-content-center movies-list-btn-container mb-5">
+        <a href="{{route('movies.list')}}?orderBy=primaryTitle&order=asc" class="btn btn-primary">Sort by Title</a>
+        <a href="{{route('movies.list')}}?orderBy=startYear&order=asc" class="btn btn-primary">Sort by Year Release</a>
+    </div>
     <div class="wrapper-grid">
         @foreach ($movies as $movie)
             <div class="movie-card d-flex flex-column align-items-center">
@@ -26,12 +30,6 @@
         @endforeach
     </div>
     <div class="pagination-container mt-4 d-flex justify-content-center">
-        @if($resquest->query('orderBy') && $resquest->query('order'))
-            @foreach($movies->linkCollection() as $link)
-                <a href="{{$link['url']}}&orderBy={{$resquest->query('orderBy')}}&order={{$resquest->query('order')}}" class="btn btn-primary @if($link['active']) active @endif @if(!$link['url']) disabled @endif">{{str_replace(['&laquo; ', ' &raquo;'], '', $link['label'])}}</a>
-            @endforeach
-        @else
-            {{ $movies->links() }}
-        @endif
+        {{ $movies->appends(request()->query())->links() }}
     </div>
 @endsection
