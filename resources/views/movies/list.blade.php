@@ -1,13 +1,16 @@
 @extends('layout')
-@if($genreLabel)
-    @section('title', 'Movie List - ' . $genreLabel)
+@if(request()->query('genre'))
+    @section('title', 'Movie List - ' . request()->query('genre'))
 @else
     @section('title', 'Movie List')
 @endif
 @section('content')
     <div class="d-flex justify-content-center item-list-btn-container mb-5">
-        <a href="{{route('movies.list')}}?orderBy=primaryTitle&order=asc" class="btn btn-primary">Sort by Title</a>
-        <a href="{{route('movies.list')}}?orderBy=startYear&order=asc" class="btn btn-primary">Sort by Year Release</a>
+        @if(request()->query('order') == 'desc')
+            <a href="{{route('movies.list')}}?orderBy={{request()->query('orderBy')}}&order=asc" class="btn btn-primary">Asc order</a>
+        @else
+            <a href="{{route('movies.list')}}?orderBy={{request()->query('orderBy')}}&order=desc" class="btn btn-primary">Desc order</a>
+        @endif
     </div>
     <div class="wrapper-grid">
         @foreach ($movies as $movie)

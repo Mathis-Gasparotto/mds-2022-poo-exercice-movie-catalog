@@ -67,7 +67,7 @@ class SeriesController extends Controller
             $series = Series::paginate($pageMax);
         }
         Paginator::useBootstrapFive();
-        return view('series.list', ['series' => $series, 'genreLabel' => $request->query('genre')]);
+        return view('series.list', ['series' => $series]);
     }
 
     public function random()

@@ -58,7 +58,7 @@ class MovieController extends Controller
             $movies = Movie::paginate($pageMax);
         }
         Paginator::useBootstrapFive();
-        return view('movies.list', ['movies' => $movies, 'genreLabel' => $request->query('genre')]);
+        return view('movies.list', ['movies' => $movies]);
     }
 
     public function random()

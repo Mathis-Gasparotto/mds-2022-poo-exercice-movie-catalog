@@ -40,7 +40,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="{{route('movies.list')}}?orderBy=primaryTitle&order=asc">Sort by Title</a>
-                        <a class="dropdown-item" href="{{route('movies.list')}}?orderBy=startYear&order=asc">Sort by Year Release</a>
+                        <a class="dropdown-item" href="{{route('movies.list')}}?orderBy=startYear&order=desc">Sort by Year Release</a>
+                        <a class="dropdown-item" href="{{route('movies.list')}}?orderBy=runtimeMinutes&order=desc">Sort by Runtime</a>
+                        <a class="dropdown-item" href="{{route('movies.list')}}?orderBy=averageRating&order=desc">Sort by Average Rating</a>
+                        <a class="dropdown-item" href="{{route('movies.list')}}?orderBy=numVotes&order=desc">Sort by Votes Number</a>
                     </div>
                 </li>
                 <li class="nav-item @if(request()->routeIs('series.random')) active @endif">
