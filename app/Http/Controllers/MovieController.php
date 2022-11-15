@@ -10,7 +10,7 @@ class MovieController extends Controller
 {
     public function show($id)
     {
-        $movie = Movie::where('id', $id)->first();
+        $movie = Movie::find($id);
         return view('movies.show', ['movie' => $movie]);
     }
 
@@ -29,6 +29,10 @@ class MovieController extends Controller
 
     public function random()
     {
+        /* redirect to random movie */
+        return redirect(route('movies.show', rand(0, count(Movie::all())-1)));
+        /* -------- */
+
         $movie = Movie::inRandomOrder()->whereNotNull('poster')->first();
         return view('movies.show', ['movie' => $movie]);
     }
