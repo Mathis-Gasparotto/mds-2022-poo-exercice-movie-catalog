@@ -1,6 +1,16 @@
 @extends('layout')
 @section('title', config('app.name'))
 @section('content')
+    <div class="single-random-movie mb-5">
+        <h2 class="text-center mb-3">Single random movie</h2>
+        <div class="movie-card d-flex flex-column align-items-center">
+            <a href="{{ route('movies.show', $randomMovie->id) }}" class="mb-2">
+                <img src="{{ $randomMovie->poster }}" alt="{{ $randomMovie->primaryTitle }}" class="movie-img">
+            </a>
+            <p>{{ $randomMovie->primaryTitle }}</p>
+        </div>
+    </div>
+    <h2 class="text-center mb-3">Other movies</h2>
     <div class="wrapper-grid">
         @foreach ($movies as $movie)
             <div class="movie-card d-flex flex-column align-items-center">
