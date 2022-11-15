@@ -27,4 +27,9 @@ class MovieController extends Controller
         return view('movies.list', ['movies' => $movies]);
     }
 
+    public function random()
+    {
+        $movie = Movie::inRandomOrder()->whereNotNull('poster')->first();
+        return view('movies.show', ['movie' => $movie]);
+    }
 }
