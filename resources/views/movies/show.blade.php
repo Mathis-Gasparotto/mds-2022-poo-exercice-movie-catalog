@@ -6,7 +6,7 @@
             <img src="{{ $movie->poster }}" alt="{{ $movie->primaryTitle }}" class="movie-img">
         </div>
 
-        <table class="movie-specs mt-5 mb-5">
+        <table class="item-specs mt-5 mb-5">
             <tr><th>Year</th><td>{{$movie->startYear}}</td></tr>
             <tr><th>Description</th><td>{{$movie->plot}}</td></tr>
             <tr><th>Average Rating</th><td>{{$movie->averageRating}}/10 ({{$movie->numVotes}} votes)</td></tr>

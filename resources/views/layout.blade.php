@@ -21,7 +21,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav pl-3 pr-3">
                 <li class="nav-item @if(request()->routeIs('home')) active @endif">
                     <a class="nav-link" href="{{route('home')}}">Home</a>
                 </li>
@@ -29,7 +29,7 @@
                     <a class="nav-link" href="{{route('movies.random')}}">Random Movie</a>
                 </li>
                 <li class="nav-item @if(request()->routeIs('movies.list')) active @endif">
-                    <a class="nav-link" href="{{route('movies.list')}}">Global List</a>
+                    <a class="nav-link" href="{{route('movies.list')}}">Global Movies List</a>
                 </li>
                 <li class="nav-item @if(request()->routeIs('genres.list')) active @endif">
                     <a class="nav-link" href="{{route('genres.list')}}">Movies Genres</a>
@@ -42,6 +42,12 @@
                         <a class="dropdown-item" href="{{route('movies.list')}}?orderBy=primaryTitle&order=asc">Sort by Title</a>
                         <a class="dropdown-item" href="{{route('movies.list')}}?orderBy=startYear&order=asc">Sort by Year Release</a>
                     </div>
+                </li>
+                <li class="nav-item @if(request()->routeIs('series.random')) active @endif">
+                    <a class="nav-link" href="{{route('series.random')}}">Random Series</a>
+                </li>
+                <li class="nav-item @if(request()->routeIs('series.list')) active @endif">
+                    <a class="nav-link" href="{{route('series.list')}}">Global Series List</a>
                 </li>
             </ul>
         </div>

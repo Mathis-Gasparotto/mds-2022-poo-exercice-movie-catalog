@@ -9,25 +9,25 @@
   row-gap: 20px;
   column-gap: 20px;
 }
-.wrapper-grid .movie-card .movie-title {
+.wrapper-grid .item-card .item-title {
   max-width: 230px;
 }
-.wrapper-grid .movie-card .movie-img {
+.wrapper-grid .item-card .item-img {
   width: 230px;
   height: 315px;
   object-fit: cover;
   transition: transform 0.25s ease-in-out;
 }
-.wrapper-grid .movie-card .movie-img:hover {
+.wrapper-grid .item-card .item-img:hover {
   transition: transform 0.25s ease-in-out;
 }
-.wrapper-grid .movie-card:nth-of-type(3n) .movie-img:hover {
+.wrapper-grid .item-card:nth-of-type(3n) .item-img:hover {
   transform: scale(1.05) rotateZ(3deg);
 }
-.wrapper-grid .movie-card:nth-of-type(3n+1) .movie-img:hover {
+.wrapper-grid .item-card:nth-of-type(3n+1) .item-img:hover {
   transform: scale(1.05) rotateZ(-2deg);
 }
-.wrapper-grid .movie-card:nth-of-type(3n+2) .movie-img:hover {
+.wrapper-grid .item-card:nth-of-type(3n+2) .item-img:hover {
   transform: scale(1.05) rotateZ(-4deg);
 }
 
@@ -35,22 +35,17 @@
   flex-direction: column;
 }
 
-.movies-list-table td, .movies-list-table th {
+.item-specs td, .item-specs th {
   padding: 0 15px;
   border: solid 1px #4a5568;
 }
 
-.movie-specs td, .movie-specs th {
-  padding: 0 15px;
-  border: solid 1px #4a5568;
-}
-
-.movie-img {
+.item-img {
   border-radius: 10px;
   box-shadow: 0 0 15px 0 #00000080;
 }
 
-.movies-list-btn-container {
+.item-list-btn-container {
   gap: 20px;
 }
 
