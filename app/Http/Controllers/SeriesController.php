@@ -48,7 +48,7 @@ class SeriesController extends Controller
     public function random()
     {
         /* redirect to random movie */
-        return redirect()->route('series.show', rand(1, count(Series::all())));
+        return redirect()->route('series.show', rand(1, Series::count()));
         /* -------- */
 
         $movie = Series::inRandomOrder()->whereNotNull('poster')->first();

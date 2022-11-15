@@ -48,7 +48,7 @@ class MovieController extends Controller
     public function random()
     {
         /* redirect to random movie */
-        return redirect()->route('movies.show', rand(1, count(Movie::all())));
+        return redirect()->route('movies.show', rand(1, Movie::count()));
         /* -------- */
 
         $movie = Movie::inRandomOrder()->whereNotNull('poster')->first();
