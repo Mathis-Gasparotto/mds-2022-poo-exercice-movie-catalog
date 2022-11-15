@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
+use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +28,5 @@ Route::get('/movies/random', [MovieController::class, 'random'])->name('movies.r
 Route::get('/movies/{id}', [MovieController::class, 'show'])->where('id', '[0-9]+')->name('movies.show');
 
 Route::get('/movies', [MovieController::class, 'list'])->name('movies.list');
+
+Route::get('/genres', [GenreController::class, 'list'])->name('genres.list');

@@ -7,7 +7,7 @@
             <a href="{{ route('movies.show', $randomMovie->id) }}" class="mb-2">
                 <img src="{{ $randomMovie->poster }}" alt="{{ $randomMovie->primaryTitle }}" class="movie-img">
             </a>
-            <p>{{ $randomMovie->primaryTitle }}</p>
+            <p>{{ $randomMovie->primaryTitle }} ({{ $randomMovie->startYear }})</p>
         </div>
     </div>
     <h2 class="text-center mb-3">Other movies</h2>
@@ -17,7 +17,7 @@
                 <a href="{{ route('movies.show', $movie->id) }}" class="mb-2">
                     <img src="{{ $movie->poster }}" alt="{{ $movie->primaryTitle }}" class="movie-img">
                 </a>
-                <p>{{ $movie->primaryTitle }}</p>
+                <p>{{ $movie->primaryTitle }} ({{ $movie->startYear }})</p>
             </div>
         @endforeach
     </div>

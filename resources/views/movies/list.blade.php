@@ -25,7 +25,7 @@
                 <a href="{{route('movies.show', $movie->id)}}" class="mb-2">
                     <img src="{{ $movie->poster }}" alt="{{ $movie->primaryTitle }}" class="movie-img">
                 </a>
-                <p>{{ $movie->primaryTitle }}</p>
+                <p>{{ $movie->primaryTitle }} ({{ $movie->startYear }})</p>
             </div>
         @endforeach
     </div>

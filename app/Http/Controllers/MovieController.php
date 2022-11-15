@@ -16,9 +16,9 @@ class MovieController extends Controller
 
     public function list(Request $resquest)
     {
-        if($resquest->query('orderBy') && $resquest->query('order'))
+        if($resquest->query('orderBy'))
         {
-            $movies = Movie::orderBy($resquest->query('orderBy'), $resquest->query('order'))
+            $movies = Movie::orderBy($resquest->query('orderBy'), $resquest->query('order', 'asc'))
                 ->paginate(24);
         } else {
             $movies = Movie::paginate(24);
@@ -30,7 +30,7 @@ class MovieController extends Controller
     public function random()
     {
         /* redirect to random movie */
-        return redirect(route('movies.show', rand(0, count(Movie::all())-1)));
+        return redirect(route('movies.show', rand(1, count(Movie::all()))));
         /* -------- */
 
         $movie = Movie::inRandomOrder()->whereNotNull('poster')->first();
