@@ -31,6 +31,9 @@
                 <li class="nav-item @if(request()->routeIs('movies.list')) active @endif">
                     <a class="nav-link" href="{{route('movies.list')}}">Global List</a>
                 </li>
+                <li class="nav-item @if(request()->routeIs('genres.list')) active @endif">
+                    <a class="nav-link" href="{{route('genres.list')}}">Movies Genres</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="{{route('movies.list')}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Filters

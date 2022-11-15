@@ -10,10 +10,38 @@
     row-gap: 20px;
     column-gap: 20px;
     .movie-card {
+        .movie-title {
+            max-width: 230px;
+        }
         .movie-img {
             width: 230px;
             height: 315px;
             object-fit: cover;
+            transition: transform .25s ease-in-out;
+            &:hover {
+                transition: transform .25s ease-in-out;
+            }
+        }
+        &:nth-of-type(3n) {
+            .movie-img {
+                &:hover {
+                    transform: scale(1.05) rotateZ(3deg);
+                }
+            }
+        }
+        &:nth-of-type(3n+1) {
+            .movie-img {
+                &:hover {
+                    transform: scale(1.05) rotateZ(-2deg);
+                }
+            }
+        }
+        &:nth-of-type(3n+2) {
+            .movie-img {
+                &:hover {
+                    transform: scale(1.05) rotateZ(-4deg);
+                }
+            }
         }
     }
 }

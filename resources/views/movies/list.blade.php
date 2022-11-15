@@ -1,5 +1,9 @@
 @extends('layout')
-@section('title', 'Movie List')
+@if($genreLabel)
+    @section('title', 'Movie List - ' . $genreLabel)
+@else
+    @section('title', 'Movie List')
+@endif
 @section('content')
     <!-- <table class="movies-list-table d-flex justify-content-center">
         <tr>
@@ -25,7 +29,9 @@
                 <a href="{{route('movies.show', $movie->id)}}" class="mb-2">
                     <img src="{{ $movie->poster }}" alt="{{ $movie->primaryTitle }}" class="movie-img">
                 </a>
-                <p>{{ $movie->primaryTitle }} ({{ $movie->startYear }})</p>
+                <div class="movie-title">
+                    <p class="text-center">{{ $movie->primaryTitle }} ({{ $movie->startYear }})</p>
+                </div>
             </div>
         @endforeach
     </div>

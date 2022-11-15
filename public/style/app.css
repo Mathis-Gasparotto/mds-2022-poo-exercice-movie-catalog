@@ -9,10 +9,26 @@
   row-gap: 20px;
   column-gap: 20px;
 }
+.wrapper-grid .movie-card .movie-title {
+  max-width: 230px;
+}
 .wrapper-grid .movie-card .movie-img {
   width: 230px;
   height: 315px;
   object-fit: cover;
+  transition: transform 0.25s ease-in-out;
+}
+.wrapper-grid .movie-card .movie-img:hover {
+  transition: transform 0.25s ease-in-out;
+}
+.wrapper-grid .movie-card:nth-of-type(3n) .movie-img:hover {
+  transform: scale(1.05) rotateZ(3deg);
+}
+.wrapper-grid .movie-card:nth-of-type(3n+1) .movie-img:hover {
+  transform: scale(1.05) rotateZ(-2deg);
+}
+.wrapper-grid .movie-card:nth-of-type(3n+2) .movie-img:hover {
+  transform: scale(1.05) rotateZ(-4deg);
 }
 
 .pagination-container > nav > div {

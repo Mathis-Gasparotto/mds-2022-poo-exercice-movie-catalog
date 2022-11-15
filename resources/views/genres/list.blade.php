@@ -3,7 +3,7 @@
 @section('content')
     <ul>
         @foreach($genres as $genre)
-            <li>{{$genre['label']}}</li>
+            <li><a href="{{route('movies.list')}}?genre={{$genre['label']}}">{{$genre['label']}}</a></li>
         @endforeach
     </ul>
 @endsection

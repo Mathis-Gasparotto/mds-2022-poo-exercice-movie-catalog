@@ -22,4 +22,9 @@ class Genre extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    public function movies()
+    {
+        return $this->belongsToMany(Movie::class, 'movies_genres');
+    }
 }
