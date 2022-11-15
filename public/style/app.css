@@ -38,4 +38,8 @@
   gap: 20px;
 }
 
+.navbar-nav .nav-item.active .nav-link {
+  color: #222222;
+}
+
 /*# sourceMappingURL=app.css.map */

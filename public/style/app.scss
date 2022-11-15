@@ -48,3 +48,15 @@
 .movies-list-btn-container {
     gap: 20px;
 }
+
+.navbar {
+    &-nav {
+        .nav-item {
+            &.active {
+                .nav-link {
+                    color: #222222;
+                }
+            }
+        }
+    }
+}
