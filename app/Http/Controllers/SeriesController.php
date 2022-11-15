@@ -19,12 +19,15 @@ class SeriesController extends Controller
         $episodes = Episode::where('series_id', $singleSeries->id)->get();
         $seasons = [];
         foreach ($episodes as $episode) {
-            if (!in_array($episode->seasonNumber, $seasons))
+            $seasonNumber = $episode->seasonNumber ? $episode->seasonNumber : 'other';
+            if (!in_array($seasonNumber, $seasons))
             {
-                $seasons[] = $episode->seasonNumber;
+                $seasons[] = $seasonNumber;
             }
         }
-        return view('series.show', ['singleSeries' => $singleSeries, 'seasons' => $seasons]);
+        sort($seasons);
+        $episodeCount = count($episodes);
+        return view('series.show', ['singleSeries' => $singleSeries, 'seasons' => $seasons, 'episodeCount' => $episodeCount]);
     }
 
     public function list(Request $request)
@@ -46,7 +49,7 @@ class SeriesController extends Controller
             if(!$genre) {
                 return redirect()->back();
             }
-            $series = $genre->movies()
+            $series = $genre->series()
                 ->orderBy($request->query('orderBy'), $request->query('order', 'asc'))
                 ->paginate($pageMax);
         } elseif($request->query('orderBy')) {
@@ -61,7 +64,7 @@ class SeriesController extends Controller
             if(!$genre) {
                 return redirect()->back();
             }
-            $series = $genre->movies()->paginate($pageMax);
+            $series = $genre->series()->paginate($pageMax);
 
         } else {
             $series = Series::paginate($pageMax);
@@ -99,7 +102,11 @@ class SeriesController extends Controller
         if(!$series) {
             return redirect()->back();
         }
-        $episodes = $series->episodes()->where('seasonNumber', $season_num)->get();
+        $seasonNumToSearch = $season_num == 'other' ? null : $season_num;
+        $episodes = $series->episodes()
+            ->where('seasonNumber', $seasonNumToSearch)
+            ->orderBy('episodeNumber', 'asc')
+            ->get();
         if(!count($episodes)) {
             return redirect()->back();
         }

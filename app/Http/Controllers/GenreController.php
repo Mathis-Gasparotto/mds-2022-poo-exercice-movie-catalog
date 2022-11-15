@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
-    public function list ()
+    public function listForMovies ()
     {
         $genres = Genre::all();
-        return view('genres.list', ['genres' => $genres]);
+        return view('genres.movies.list', ['genres' => $genres]);
+    }
+
+    public function listForSeries ()
+    {
+        $genres = Genre::all();
+        return view('genres.series.list', ['genres' => $genres]);
     }
 }

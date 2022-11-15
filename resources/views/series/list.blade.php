@@ -15,7 +15,7 @@
     <div class="wrapper-grid">
         @foreach ($series as $singleSeries)
             <div class="item-card d-flex flex-column align-items-center">
-                <a href="{{route('series.show', $singleSeries->id)}}" class="mb-2">
+                <a href="{{route('series.show', $singleSeries->id)}}" class="mb-3">
                     <img src="{{ $singleSeries->poster }}" alt="{{ $singleSeries->primaryTitle }}" class="item-img">
                 </a>
                 <div class="item-title">

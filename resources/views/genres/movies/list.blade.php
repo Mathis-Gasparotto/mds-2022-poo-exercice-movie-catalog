@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Movie Genres')
+@section('title', 'Movies Genres')
 @section('content')
     <ul>
         @foreach($genres as $genre)

@@ -22,13 +22,13 @@
   transition: transform 0.25s ease-in-out;
 }
 .wrapper-grid .item-card:nth-of-type(3n) .item-img:hover {
-  transform: scale(1.05) rotateZ(3deg);
+  transform: scale(1.05) rotateZ(-4deg);
 }
 .wrapper-grid .item-card:nth-of-type(3n+1) .item-img:hover {
   transform: scale(1.05) rotateZ(-2deg);
 }
 .wrapper-grid .item-card:nth-of-type(3n+2) .item-img:hover {
-  transform: scale(1.05) rotateZ(-4deg);
+  transform: scale(1.05) rotateZ(3deg);
 }
 
 .pagination-container > nav > div {
@@ -49,6 +49,9 @@
   gap: 20px;
 }
 
+.navbar {
+  padding: 0.5rem 10px;
+}
 .navbar-nav .nav-item.active .nav-link {
   color: #222222;
 }

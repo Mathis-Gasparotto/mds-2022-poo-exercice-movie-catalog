@@ -16,7 +16,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{route('home')}}">Moviiiies</a>
+        <a class="navbar-brand" href="{{route('home')}}">Moviiiies & Seriiiies</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -28,15 +28,15 @@
                 <li class="nav-item @if(request()->routeIs('movies.random')) active @endif">
                     <a class="nav-link" href="{{route('movies.random')}}">Random Movie</a>
                 </li>
+                <li class="nav-item @if(request()->routeIs('genres.movies.list')) active @endif">
+                    <a class="nav-link" href="{{route('genres.movies.list')}}">Movies Genres</a>
+                </li>
                 <li class="nav-item @if(request()->routeIs('movies.list')) active @endif">
                     <a class="nav-link" href="{{route('movies.list')}}">Global Movies List</a>
                 </li>
-                <li class="nav-item @if(request()->routeIs('genres.list')) active @endif">
-                    <a class="nav-link" href="{{route('genres.list')}}">Movies Genres</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="{{route('movies.list')}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Movies Orders
+                        Movies Sorts
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="{{route('movies.list')}}?orderBy=primaryTitle&order=asc">Sort by Title</a>
@@ -49,8 +49,23 @@
                 <li class="nav-item @if(request()->routeIs('series.random')) active @endif">
                     <a class="nav-link" href="{{route('series.random')}}">Random Series</a>
                 </li>
+                <li class="nav-item @if(request()->routeIs('genres.series.list')) active @endif">
+                    <a class="nav-link" href="{{route('genres.series.list')}}">Series Genres</a>
+                </li>
                 <li class="nav-item @if(request()->routeIs('series.list')) active @endif">
                     <a class="nav-link" href="{{route('series.list')}}">Global Series List</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{route('series.list')}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Series Sorts
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{{route('series.list')}}?orderBy=primaryTitle&order=asc">Sort by Title</a>
+                        <a class="dropdown-item" href="{{route('series.list')}}?orderBy=startYear&order=desc">Sort by Year Release</a>
+                        <a class="dropdown-item" href="{{route('series.list')}}?orderBy=runtimeMinutes&order=desc">Sort by Runtime</a>
+                        <a class="dropdown-item" href="{{route('series.list')}}?orderBy=averageRating&order=desc">Sort by Average Rating</a>
+                        <a class="dropdown-item" href="{{route('series.list')}}?orderBy=numVotes&order=desc">Sort by Votes Number</a>
+                    </div>
                 </li>
             </ul>
         </div>

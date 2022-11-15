@@ -25,7 +25,7 @@
         &:nth-of-type(3n) {
             .item-img {
                 &:hover {
-                    transform: scale(1.05) rotateZ(3deg);
+                    transform: scale(1.05) rotateZ(-4deg);
                 }
             }
         }
@@ -39,7 +39,7 @@
         &:nth-of-type(3n+2) {
             .item-img {
                 &:hover {
-                    transform: scale(1.05) rotateZ(-4deg);
+                    transform: scale(1.05) rotateZ(3deg);
                 }
             }
         }
@@ -71,6 +71,7 @@
 }
 
 .navbar {
+    padding: 0.5rem 10px;
     &-nav {
         .nav-item {
             &.active {

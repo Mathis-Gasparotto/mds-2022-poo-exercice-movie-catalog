@@ -15,7 +15,7 @@
     <div class="wrapper-grid">
         @foreach ($movies as $movie)
             <div class="item-card d-flex flex-column align-items-center">
-                <a href="{{route('movies.show', $movie->id)}}" class="mb-2">
+                <a href="{{route('movies.show', $movie->id)}}" class="mb-3">
                     <img src="{{ $movie->poster }}" alt="{{ $movie->primaryTitle }}" class="item-img">
                 </a>
                 <div class="item-title">

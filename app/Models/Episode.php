@@ -23,4 +23,9 @@ class Episode extends Model
      */
     public $timestamps = false;
 
+    public function genres()
+    {
+        return $this->belongsToMany(Genre::class, 'episodes_genres');
+    }
+
 }
