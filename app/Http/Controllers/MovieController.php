@@ -12,29 +12,45 @@ class MovieController extends Controller
     public function show($id)
     {
         $movie = Movie::find($id);
+        if(!$movie) {
+            return redirect()->back();
+        }
         return view('movies.show', ['movie' => $movie]);
     }
 
     public function list(Request $request)
     {
         $pageMax = 24;
+        $orderOptions= [
+            'primaryTitle',
+            'startYear',
+            'runtimeMinutes',
+            'averageRating',
+            'numVotes',
+        ];
         if($request->query('orderBy') && $request->query('genre')) {
+            if(!in_array($request->query('orderBy'), $orderOptions)) {
+                return redirect()->back();
+            }
             $genre = Genre::where('label', $request->query('genre'))
                 ->first();
             if(!$genre) {
-                return redirect()->route('movies.list');
+                return redirect()->back();
             }
             $movies = $genre->movies()
                 ->orderBy($request->query('orderBy'), $request->query('order', 'asc'))
                 ->paginate($pageMax);
         } elseif($request->query('orderBy')) {
+            if(!in_array($request->query('orderBy'), $orderOptions)) {
+                return redirect()->back();
+            }
             $movies = Movie::orderBy($request->query('orderBy'), $request->query('order', 'asc'))
                 ->paginate($pageMax);
         } elseif($request->query('genre')) {
             $genre = Genre::where('label', $request->query('genre'))
                 ->first();
             if(!$genre) {
-                return redirect()->route('movies.list');
+                return redirect()->back();
             }
             $movies = $genre->movies()->paginate($pageMax);
 

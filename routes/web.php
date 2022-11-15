@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    dd(\App\Models\Series::first());
     $movies = Movie::inRandomOrder()->whereNotNull('poster')->limit(12)->get();
     $randomMovie = Movie::inRandomOrder()->whereNotNull('poster')->first();
     return view('home', ['movies' => $movies, 'randomMovie' => $randomMovie]);
@@ -32,6 +33,17 @@ Route::get('/movies', [MovieController::class, 'list'])->name('movies.list');
 Route::get('/genres', [GenreController::class, 'list'])->name('genres.list');
 
 Route::get('/series/random', [SeriesController::class, 'random'])->name('series.random');
+
+Route::get('/series/{id}/season/{season_num}/episode/{episode_num}', [SeriesController::class, 'episodesShow'])
+    ->where('id', '[0-9]+')
+    ->where('season_num', '[0-9]+')
+    ->where('episode_num', '[0-9]+')
+    ->name('series.episodes.show');
+
+Route::get('/series/{id}/season/{season_num}', [SeriesController::class, 'episodesList'])
+    ->where('id', '[0-9]+')
+    ->where('season_num', '[0-9]+')
+    ->name('series.episodes.list');
 
 Route::get('/series/{id}', [SeriesController::class, 'show'])->where('id', '[0-9]+')->name('series.show');
 

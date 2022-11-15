@@ -36,7 +36,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="{{route('movies.list')}}" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Filters
+                        Movies Orders
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="{{route('movies.list')}}?orderBy=primaryTitle&order=asc">Sort by Title</a>
@@ -52,7 +52,7 @@
             </ul>
         </div>
     </nav>
-    <div class="container">
+    <div class="container pb-5">
         <h1 class="text-center mb-5 mt-3">@yield('title')</h1>
         <div class="wrapper">
             @yield('content')
