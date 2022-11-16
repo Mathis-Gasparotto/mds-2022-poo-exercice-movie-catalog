@@ -20,7 +20,7 @@
             @if($episode->runtimeMinutes)<tr><th>Runtime</th><td>{{$episode->runtimeMinutes}} minute(s)</td></tr>@endif
             @if($episode->genres)<tr><th>Genre(s)</th><td>
                 @foreach($episode->genres as $genre)
-                    {{$genre['label']}},
+                            <a href="{{route('series.list')}}?genre={{$genre['label']}}">{{$genre['label']}}</a>,
                 @endforeach
             </td></tr>@endif
         </table>

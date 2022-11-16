@@ -6,10 +6,12 @@
 @endif
 @section('content')
     <div class="d-flex justify-content-center item-list-btn-container mb-5">
-        @if(request()->query('order') == 'desc')
-            <a href="{{route('movies.list')}}?orderBy={{request()->query('orderBy')}}&order=asc" class="btn btn-primary">Asc order</a>
-        @else
-            <a href="{{route('movies.list')}}?orderBy={{request()->query('orderBy')}}&order=desc" class="btn btn-primary">Desc order</a>
+        @if(request()->query('orderBy'))
+            @if(request()->query('order') == 'desc')
+                <a href="{{route('movies.list')}}?orderBy={{request()->query('orderBy')}}&order=asc" class="btn btn-primary">Asc order</a>
+            @else
+                <a href="{{route('movies.list')}}?orderBy={{request()->query('orderBy')}}&order=desc" class="btn btn-primary">Desc order</a>
+            @endif
         @endif
     </div>
     <div class="wrapper-grid">
