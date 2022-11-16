@@ -18,16 +18,21 @@ class SeriesController extends Controller
         }
         $episodes = Episode::where('series_id', $singleSeries->id)->get();
         $seasons = [];
+        $seasonsForCount = [];
         foreach ($episodes as $episode) {
             $seasonNumber = $episode->seasonNumber ? $episode->seasonNumber : 'other';
             if (!in_array($seasonNumber, $seasons))
             {
                 $seasons[] = $seasonNumber;
             }
+            if (!in_array($episode->seasonNumber, $seasonsForCount) && $episode->seasonNumber)
+            {
+                $seasonsForCount[] = $episode->seasonNumber;
+            }
         }
         sort($seasons);
         $episodeCount = count($episodes);
-        return view('series.show', ['singleSeries' => $singleSeries, 'seasons' => $seasons, 'episodeCount' => $episodeCount]);
+        return view('series.show', ['singleSeries' => $singleSeries, 'seasons' => $seasons, 'episodeCount' => $episodeCount, 'seasonCount' => count($seasonsForCount)]);
     }
 
     public function list(Request $request)

@@ -12,7 +12,7 @@
             @if($singleSeries->startYear)<tr><th>Year</th><td>{{$singleSeries->startYear}}</td></tr>@endif
             @if($singleSeries->plot)<tr><th>Description</th><td>{{$singleSeries->plot}}</td></tr>@endif
             @if($singleSeries->averageRating && $singleSeries->numVotes)<tr><th>Average Rating</th><td>{{$singleSeries->averageRating}}/10 ({{$singleSeries->numVotes}} votes)</td></tr>@endif
-            @if($episodeCount && $seasons)<tr><th>Episode Number</th><td>{{$episodeCount}} episode(s) ({{count($seasons)}} season(s))</td></tr>@endif
+            @if($episodeCount && $seasons)<tr><th>Episode Number</th><td>{{$episodeCount}} episode(s) ({{$seasonCount}} season(s))</td></tr>@endif
             @if($singleSeries->genres)<tr><th>Genre(s)</th><td>
                 @foreach($singleSeries->genres as $genre)
                     <a href="{{route('series.list')}}?genre={{$genre['label']}}">{{$genre['label']}}</a>,

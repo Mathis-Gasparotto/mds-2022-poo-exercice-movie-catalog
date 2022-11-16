@@ -23,8 +23,12 @@
                     <td class="text-center"><a href="{{route('series.episodes.show', [$series, $season_num, $episode->episodeNumber])}}">{{$episode->primaryTitle}}</a></td>
                 @endif
                 <td class="text-center">{{$episode->startYear}}</td>
-                <td class="text-center">{{$episode->runtimeMinutes}} minute(s)</td>
-                <td class="text-center">{{$episode->averageRating}} ({{$episode->numVotes}} votes)</td>
+                <td class="text-center">
+                    @if($episode->runtimeMinutes){{$episode->runtimeMinutes}} minute(s)@endif
+                </td>
+                <td class="text-center">
+                    @if($episode->averageRating && $episode->numVotes){{$episode->averageRating}} ({{$episode->numVotes}} votes)@endif
+                </td>
                 <td class="text-center">{{$episode->plot}}</td>
                 <!-- <td>
                     @foreach($episode->genres as $genre)
