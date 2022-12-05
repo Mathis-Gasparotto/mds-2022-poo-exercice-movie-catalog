@@ -19,8 +19,8 @@
                 @if($season_num == 'other')
                     <td class="text-center">{{$episode->primaryTitle}}</td>
                 @else
-                    <td class="text-center"><a href="{{route('series.episodes.show', [$series, $season_num, $episode->episodeNumber])}}">{{$episode->episodeNumber}}</a></td>
-                    <td class="text-center"><a href="{{route('series.episodes.show', [$series, $season_num, $episode->episodeNumber])}}">{{$episode->primaryTitle}}</a></td>
+                    <td class="text-center"><a href="{{route('series.episodes.show', [$series, $season_num, $episode->pivot->episodeNumber])}}">{{$episode->pivot->episodeNumber}}</a></td>
+                    <td class="text-center"><a href="{{route('series.episodes.show', [$series, $season_num, $episode->pivot->episodeNumber])}}">{{$episode->primaryTitle}}</a></td>
                 @endif
                 <td class="text-center">{{$episode->startYear}}</td>
                 <td class="text-center">

@@ -16,18 +16,24 @@ class SeriesController extends Controller
         if(!$singleSeries) {
             return redirect()->back();
         }
-        $episodes = Episode::where('series_id', $singleSeries->id)->get();
+
+        // V1
+        //$episodes = Episode::where('series_id', $singleSeries->id)->get();
+
+        $episodes = $singleSeries->episodes;
+
         $seasons = [];
         $seasonsForCount = [];
+
         foreach ($episodes as $episode) {
-            $seasonNumber = $episode->seasonNumber ? $episode->seasonNumber : 'other';
+            $seasonNumber = $episode->pivot->seasonNumber ? $episode->pivot->seasonNumber : 'other';
             if (!in_array($seasonNumber, $seasons))
             {
                 $seasons[] = $seasonNumber;
             }
-            if (!in_array($episode->seasonNumber, $seasonsForCount) && $episode->seasonNumber)
+            if (!in_array($episode->pivot->seasonNumber, $seasonsForCount) && $episode->pivot->seasonNumber)
             {
-                $seasonsForCount[] = $episode->seasonNumber;
+                $seasonsForCount[] = $episode->pivot->seasonNumber;
             }
         }
         sort($seasons);
@@ -81,10 +87,11 @@ class SeriesController extends Controller
     public function random()
     {
         /* redirect to random movie */
-        return redirect()->route('series.show', rand(1, Series::count()));
+        $series = Series::inRandomOrder()->whereNotNull('poster')->first();
+        return redirect()->route('series.show', $series);
         /* -------- */
 
-        $movie = Series::inRandomOrder()->whereNotNull('poster')->first();
+        $series = Series::inRandomOrder()->whereNotNull('poster')->first();
         return view('series.show', ['singleSeries' => $singleSeries]);
     }
 
@@ -109,8 +116,8 @@ class SeriesController extends Controller
         }
         $seasonNumToSearch = $season_num == 'other' ? null : $season_num;
         $episodes = $series->episodes()
-            ->where('seasonNumber', $seasonNumToSearch)
-            ->orderBy('episodeNumber', 'asc')
+            ->wherePivot('seasonNumber', $seasonNumToSearch)
+            ->orderBy('episodeNumber', 'asc') // Au final cela marche comme ça ;)
             ->get();
         if(!count($episodes)) {
             return redirect()->back();

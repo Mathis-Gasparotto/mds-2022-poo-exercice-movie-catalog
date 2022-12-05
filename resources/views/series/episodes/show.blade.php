@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', $series->primaryTitle . ' - Season ' . $season_num . ' - Episode ' . $episode->episodeNumber)
+@section('title', $series->primaryTitle . ' - Season ' . $season_num . ' - Episode ' . $episode->pivot->episodeNumber)
 @section('content')
     <div>
         <div class="item-list-btn-container d-flex justify-content-center mb-5">

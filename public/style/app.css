@@ -9,6 +9,9 @@
   row-gap: 20px;
   column-gap: 20px;
 }
+.wrapper-grid .item-card {
+  gap: 100px;
+}
 .wrapper-grid .item-card .item-title {
   max-width: 230px;
 }

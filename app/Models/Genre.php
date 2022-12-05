@@ -25,16 +25,25 @@ class Genre extends Model
 
     public function movies()
     {
-        return $this->belongsToMany(Movie::class, 'movies_genres');
+        return $this->belongsToMany(Title::class, 'titles_genres')->where('titleType', '=', 'movie');
+
+        // V1
+        //return $this->belongsToMany(Movie::class, 'movies_genres');
     }
 
     public function series()
     {
-        return $this->belongsToMany(Series::class, 'series_genres');
+        return $this->belongsToMany(Title::class, 'titles_genres')->whereIn('titleType', ['tvSeries', 'tvMiniSeries']);
+
+        // V1
+        //return $this->belongsToMany(Series::class, 'series_genres');
     }
 
     public function episodes()
     {
-        return $this->belongsToMany(Episode::class, 'episodes_genres');
+        return $this->belongsToMany(Title::class, 'titles_genres')->where('titleType', '=', 'tvEpisode');
+
+        // V1
+        //return $this->belongsToMany(Episode::class, 'episodes_genres');
     }
 }

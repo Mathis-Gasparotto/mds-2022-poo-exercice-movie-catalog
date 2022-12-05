@@ -3,10 +3,10 @@
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\SeriesController;
-use App\Models\Episode;
 use App\Models\Movie;
-use App\Models\Series;
+use App\Models\Title;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +58,9 @@ Route::get('/search', function (Request $request){
     if (!$query) {
         return redirect()->back();
     }
+
+    // V1
+    /*
     $movies = Movie::where('primaryTitle', 'LIKE', '%'.$query.'%')->limit(10)->get();
     $series = Series::where('primaryTitle', 'LIKE', '%'.$query.'%')->limit(10)->get();
     $episodes = Episode::where('primaryTitle', 'LIKE', '%'.$query.'%')->limit(10)->get();
@@ -74,5 +77,10 @@ Route::get('/search', function (Request $request){
         $episode['type'] = 'episode';
         $results[] = $episode;
     }
+    */
+
+    $results = Title::where('primaryTitle', 'LIKE', '%'.$query.'%')->paginate(24);
+    Paginator::useBootstrapFive();
+
     return view('search', ['results' => $results]);
 })->name('search');
