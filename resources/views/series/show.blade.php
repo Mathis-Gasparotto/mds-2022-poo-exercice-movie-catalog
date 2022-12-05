@@ -4,7 +4,7 @@
     <div>
         @if($singleSeries->poster)
             <div class="d-flex justify-content-center">
-                <img src="{{ $singleSeries->poster }}" alt="{{ $singleSeries->primaryTitle }}" class="movie-img">
+                <img src="{{ $singleSeries->poster }}" alt="{{ $singleSeries->primaryTitle }}" class="movie-img" onerror="this.src='no-image.jpg';">
             </div>
         @endif
 

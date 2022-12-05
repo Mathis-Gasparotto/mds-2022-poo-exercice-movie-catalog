@@ -3,7 +3,10 @@
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\SeriesController;
+use App\Models\Episode;
 use App\Models\Movie;
+use App\Models\Series;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,3 +52,27 @@ Route::get('/series/{id}/season/{season_num}', [SeriesController::class, 'episod
 Route::get('/series/{id}', [SeriesController::class, 'show'])->where('id', '[0-9]+')->name('series.show');
 
 Route::get('/series', [SeriesController::class, 'list'])->name('series.list');
+
+Route::get('/search', function (Request $request){
+    $query = $request->query('s');
+    if (!$query) {
+        return redirect()->back();
+    }
+    $movies = Movie::where('primaryTitle', 'LIKE', '%'.$query.'%')->limit(10)->get();
+    $series = Series::where('primaryTitle', 'LIKE', '%'.$query.'%')->limit(10)->get();
+    $episodes = Episode::where('primaryTitle', 'LIKE', '%'.$query.'%')->limit(10)->get();
+    $results = [];
+    foreach ($movies as $movie) {
+        $movie['type'] = 'movie';
+        $results[] = $movie;
+    }
+    foreach ($series as $singleSeries) {
+        $singleSeries['type'] = 'series';
+        $results[] = $singleSeries;
+    }
+    foreach ($episodes as $episode) {
+        $episode['type'] = 'episode';
+        $results[] = $episode;
+    }
+    return view('search', ['results' => $results]);
+})->name('search');

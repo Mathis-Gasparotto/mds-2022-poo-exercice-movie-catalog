@@ -20,7 +20,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
             <ul class="navbar-nav pl-3 pr-3">
                 <li class="nav-item @if(request()->routeIs('home')) active @endif">
                     <a class="nav-link" href="{{route('home')}}">Home</a>
@@ -68,6 +68,9 @@
                     </div>
                 </li>
             </ul>
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0" method="GET" action="/search">
+                <input name="s" type="search" class="form-control" placeholder="Search..." aria-label="Search" required>
+            </form>
         </div>
     </nav>
     <div class="container pb-5">

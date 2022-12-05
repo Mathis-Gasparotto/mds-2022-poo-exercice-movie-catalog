@@ -18,7 +18,7 @@
         @foreach ($series as $singleSeries)
             <div class="item-card d-flex flex-column align-items-center">
                 <a href="{{route('series.show', $singleSeries->id)}}" class="mb-3">
-                    <img src="{{ $singleSeries->poster }}" alt="{{ $singleSeries->primaryTitle }}" class="item-img">
+                    <img src="{{ $singleSeries->poster }}" alt="{{ $singleSeries->primaryTitle }}" class="item-img" onerror="this.src='no-image.jpg';">
                 </a>
                 <div class="item-title">
                     <p class="text-center">{{ $singleSeries->primaryTitle }} ({{ $singleSeries->startYear }})</p>

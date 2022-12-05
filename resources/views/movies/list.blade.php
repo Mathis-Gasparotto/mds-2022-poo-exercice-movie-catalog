@@ -18,7 +18,7 @@
         @foreach ($movies as $movie)
             <div class="item-card d-flex flex-column align-items-center">
                 <a href="{{route('movies.show', $movie->id)}}" class="mb-3">
-                    <img src="{{ $movie->poster }}" alt="{{ $movie->primaryTitle }}" class="item-img">
+                    <img src="{{ $movie->poster }}" alt="{{ $movie->primaryTitle }}" class="item-img" onerror="this.src='no-image.jpg';">
                 </a>
                 <div class="item-title">
                     <p class="text-center">{{ $movie->primaryTitle }} ({{ $movie->startYear }})</p>
