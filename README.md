@@ -7,6 +7,12 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## About Project
+
+Répertoire de film et de séries :
+
+Lors du module de POO de cette année, j’ai eu l’occasion de faire un répertoire de film et séries avec le framework Laravel. Sur cette plateforme, on peut accéder à la liste des films, appliquer des filtres à la liste de films, voir les détails d’un film, voir la liste des séries, appliquer des filtres à la liste des séries, voir les détails d’une série (avec la liste des saisons), voir la liste des épisodes d’une saison, voir les détails d’un épisode de série.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
