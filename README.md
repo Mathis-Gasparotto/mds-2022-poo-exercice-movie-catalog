@@ -1,72 +1,259 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Movie catalog project with Laravel
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Let's create a movie catalog using Laravel
 
-## About Project
+## Laravel
 
-Répertoire de film et de séries :
+You can find a lot of resource about Laravel online. Here are a few interesting reads:
+- Laravel docs and getting started: https://laravel.com/docs/9.x
+- Laravel API: https://laravel.com/api/5.8/index.html
 
-Lors du module de POO de l'année 2022-2023 chez MyDigitalSchool, j’ai eu l’occasion de faire un répertoire de film et séries avec le framework Laravel. Sur cette plateforme, on peut accéder à la liste des films, appliquer des filtres à la liste de films, voir les détails d’un film, voir la liste des séries, appliquer des filtres à la liste des séries, voir les détails d’une série (avec la liste des saisons), voir la liste des épisodes d’une saison, voir les détails d’un épisode de série.
 
-## About Laravel
+## Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+We want to design an online catalog for Movies and TV Series.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Goals:
+- Understanding the MVC architecture pattern
+- Understanding how Object Oriented Programming can be used in an MVC project
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Database
 
-## Learning Laravel
+The database we will be using contains the following tables:
+- `movies`: This table contains a list of movies that we have in the catalog
+- `series`: This table contains a list of series that we have in the catalog
+- `episodes`: This table contains a list of episodes for each series that we have in the catalog
+- `genres`: This table contains a list of genres
+- There are other tables to put in place relationships between those tables: `movies_genres`, `series_genres`, `episodes_genres`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Those tables contain basic information to display to the user: `title, year, runtime, plot, poster image, ratings, etc.`
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Models
 
-## Laravel Sponsors
+The base application already contains one Model to be used with the database: `Movie`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+During this project you will have to create models for the other tables in our database.
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Exercises
 
-## Contributing
+### Part 1
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Exercise 0: Setup
 
-## Code of Conduct
+Let's first setup the base of the project
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1) Fork the project on GitHub: https://github.com/corentingi/mds-poo-exercice-catalog
+2) Clone the project locally: `git clone git@github.com:xxxx/mds-poo-exercice-catalog.git`
+3) Configure the project: Create a `.env` file containing the correct information to connect to the database
+4) Install dependencies: `composer install`
+5) Start a development server with artisan `php artisan serve`
+6) Check that everything works by loading the main page: http://localhost:8000 (You should see a page with a list of movies)
 
-## Security Vulnerabilities
+**Note:** For this part we will be using the database `catalog`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+#### Exercise 1: Movie page
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Objective**
+Create a page to display a movie and all it's information.
+
+**Steps:**
+- Create the controller `MovieController`
+- Create a method `show($id)` in the controller to handle the action
+- Add the route `/movies/{id}`
+- Design a simple page to display the movie information
+
+**Commit all your changes to Git**
+
+#### Exercise 2: Page to list all movies
+
+**Objective**
+Create a page that lists the first 20 movies found in database.
+
+**Steps:**
+- Create a method `list()` in the `MovieController` to handle the action
+- Add the route `/movies`
+- Design a simple page to display the movie list
+
+This page should contain the list of movies with their title, poster and basic information.
+
+**Commit all your changes to Git**
+
+
+#### Exercise 3: Add a pagination feature to the list of movies
+
+**Objective**
+To explore more than the first 20 movies, we need a way to handle pages.
+
+**Steps:**
+- Add the query parameter `page` to select the page to display
+- Modify the query to get the right page
+- Check that this is working loading the page: `http://localhost:8000/movies?page=1`
+- Add a simple selector to go the next and previous pages
+
+**Commit all your changes to Git**
+
+
+#### Exercise 4: Add an ordering parameter
+
+**Objective**
+Add an ordering feature using query parameters
+
+We should be able to order the list of movies by `startYear` and `averageRating`:
+- `/movies?order_by=startYear&order=asc`
+- `/movies?order_by=averageRating&order=desc`
+
+**Commit all your changes to Git**
+
+
+#### Exercise 5: Display a movie at random
+
+**Objective**
+We want to provide a pages that can return a movie at random.
+This should help users find new stuff to watch.
+
+**Steps:**
+- Add a new route `/movie/random`
+- Add a new function in the `MovieController` to handle this action
+- Re-use the existing view to display the page
+
+**BONUS:**
+- Display a random movie on the front page too
+
+**Commit all your changes to Git**
+
+
+#### Exercise 6: List available movie genres
+
+**Objective**
+Add a page to list all available movie genres.
+
+**Steps:**
+- Add the model `Genre`
+- Add the controller `GenreController`
+- Add a function `list` to the controller
+- Add the page `/genres` to return the list of genres available
+
+**Commit all your changes to Git**
+
+
+#### Exercise 7: List movies of a specific genre
+
+**Objective**
+Add a filter to list only movies of a specific genre.
+
+**Steps:**
+- Add the required code to handle a relationship between `Movies` and `Genre`: https://laravel.com/docs/9.x/eloquent-relationships
+- Change the `MovieController` to handle this filter: `/movies?genre=Action`
+- Add links to move from the page `/genres` to `/movies?genre=Action`
+
+**Commit all your changes to Git**
+
+
+#### Exercise 8: Add support for TV series too
+
+**Objective**
+For the moment we can only manage movies in our catalog.
+We also have TV series and their episodes in the database and would like to also support TV series.
+
+TV series are a bit different, there is the series itself and each episode have their own information.
+
+**Steps:**
+- Add a new models to manage the TV series and episodes: `Series`, `Episode`
+- Add the relationship between the two: https://laravel.com/docs/9.x/eloquent-relationships
+- Create a new controller `SeriesController` to be used later.
+
+Note: `Series` is special as it always has an `s` at the end, even as singular.
+
+**Commit all your changes to Git**
+
+
+#### Exercise 9: List TV series
+
+**Objective**
+Now that we have the controller and relationship ready, create the page to list the series in the database.
+
+**Steps:**
+- Add a new controller function `list()` to handle this action
+- Add a new route `/series` (to list all TV series)
+- Add filters the same way they work for movies
+
+You can re-use the work done for listing movies with filters and pagination.
+
+**Commit all your changes to Git**
+
+
+#### Exercise 10: Show a TV series details
+
+**Objective**
+A TV series has information of itself that we can display.
+When we click on a series in the list, we want to display its details.
+
+
+**Steps:**
+- Add a new controller function `show()` to handle this action
+- Add a new route `/series/{id}` (to display a single series information)
+- Add a new view to display a series information
+- Add links between the pages: `/series` and `/series/{id}`
+
+**BONUS:**
+- Also add the `/series/random` page to find a random series
+
+**Commit all your changes to Git**
+
+
+#### Exercise 11: List a TV series episodes
+
+**Objective**
+A TV series is a bit special as it contains multiple episodes.
+We want to list those episodes in the series page `/series/{id}`, but also add a new page for the details of each episodes.
+
+**Steps:**
+- Add new routes:
+  - `/series/{id}/season/{season_num}`: List all episode of a given season
+  - `/series/{id}/season/{season_num}/episode/{episode_num}`: Show information about a specific episode
+- Add new controller functions to handle those actions
+- Add new view to display the pages
+
+**Commit all your changes to Git**
+
+
+#### Exercise 12: Search bar
+
+**Objective**
+We would like to be able to search from the main page through all the movie, series and episodes available.
+When using the search bar, the results should be displayed on a separate page with the link to those movies, series, episodes.
+
+You can start by searching only movies and then add TV series and episodes in a second time.
+
+Note: the results page can have the following route: `/search?q=my search`
+
+**Commit all your changes to Git**
+
+
+
+### Part 2: Refactoring
+
+Our database engineers have realized that having 3 tables (`Movies`, `Series` and `Episodes`) was making things difficult.
+They have decided to change the way we store them and have a single database called `Title` which will contain all type of medias.
+
+**Note:** For this part we will be using the database `catalog_v2`
+
+
+#### Exercise 1: Refactor the application
+
+**Objective**
+Change the code of the application to handle the new table `Title`
+
+
+**Hints:**
+- Add a new model `Title`
+- The models `Movie`, `Series` and `Episode` could now inherit from this `Title` class
+- The controllers `MovieController`, `SeriesController` and `EpisodeController` could inherit from a `TitleController`
+- We can now factorize most functions:
+  - Some Controller functions can be factorized
+  - The search function can be improved now that all results derive from the same Model
+
+**Commit all your changes to Git**
